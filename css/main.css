@@ -49,7 +49,8 @@
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
     --bs-body-color: #212529;
-    --bs-body-bg: #f8f9fa;
+    --bs-body-bg: #f1f1f1;
+    --mg-section: 80px;
 }
 
 .darken-transparent {
@@ -71,7 +72,7 @@ header.masthead {
 
 header.subhead{
     position: relative;
-    height: 80px;
+    height: var(--mg-section);
     background: url("../assets/img/bg-1.jpg") no-repeat center center;
     background-size: cover;
 }
@@ -114,4 +115,17 @@ hr {
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.page-content {
+    min-height: 640px;
+}
+
+.content-container{
+    margin: auto;
+    width: 50%;
+    padding: 30px;
+    margin-top: var(--mg-section);
+    background-color: var(--bs-gray-100);
+    border-radius: 20px;
 }

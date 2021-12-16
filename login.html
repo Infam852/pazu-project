@@ -16,13 +16,13 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="custom_css/style_main.css" rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
     </head>
     <body>
         <header class="subhead">
-            <nav class="navbar navbar-expand-lg navbar-defaul fixed-top static-top p-0">
+            <nav class="darken-transparent navbar navbar-expand-lg navbar-defaul fixed-top static-top p-0">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-white p-3" href="main.html">Navbar</a>
+                    <a class="navbar-brand text-white p-3" href="index.html">Navbar</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -45,10 +45,34 @@
                     </div>
                 </div>
             </nav>
-
-            </header>
-        <div>
-            adsads
+        </header>
+        <div class="container page-content">
+            <div class="content-container border border-dark shadow">
+                  <form>
+                    <div>
+                      <h2 class="text-center">Logowanie</h2>
+                      <hr/>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email</label>
+                      <input type="email" class="form-control" placeholder="email..." id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Hasło</label>
+                      <input type="password" class="form-control" placeholder="hasło..." id="exampleInputPassword1">
+                    </div>
+                    <div class="mt-2">
+                        <a class="link-secondary" href="#">Nie pamiętam hasła</a>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Zaloguj się</button>
+                        <div class="mt-2">
+                            <span>Jeśli nie masz konta <a class="link-primary" href="#">zarejestruj się</a></span>
+                        </div>
+                    </div>
+                  </form>
+            </div>
         </div>
 
         <!-- footer -->
