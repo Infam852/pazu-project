@@ -45,30 +45,57 @@
                     </div>
                 </div>
             </nav>
+            <!--  oninput='RegisterInputPasswordConfirm.setCustomValidity(RegisterInputPasswordConfirm.value != RegisterInputPassword.value ? true : false)'-->
         </header>
         <div class="container page-content my-5">
             <div class="content-container border border-dark shadow">
-                  <form>
+                  <form class="needs-validation" oninput="checkPasswordMatch()" novalidate>
                     <div>
                       <h2 class="text-center">Rejestracja</h2>
                       <hr/>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email</label>
-                      <input type="email" class="form-control" placeholder="email..." id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <label for="RegisterInputEmail" class="form-label">Email</label>
+                      <input type="email" class="form-control" placeholder="email..." id="RegisterInputEmail" aria-describedby="emailHelp" required>
                       <div id="emailHelp" class="form-text"></div>
+                      <div class="valid-feedback">
+                        Ok!
+                      </div>
+                      <div class="invalid-feedback">
+                        Niepoprawny email
+                      </div>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Hasło</label>
-                      <input type="password" class="form-control" placeholder="hasło..." id="exampleInputPassword1">
+                      <label for="RegisterInputPassword" class="form-label">Hasło</label>
+                      <input type="password" class="form-control" placeholder="hasło..." id="RegisterInputPassword" required>
+                      <div class="valid-feedback">
+                        Ok!
+                      </div>
+                      <div class="invalid-feedback">
+                        To pole jest wymagane
+                      </div>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Powtórz hasło</label>
-                        <input type="password" class="form-control" placeholder="hasło..." id="exampleInputPassword1">
+                        <label for="RegisterInputPasswordConfirm" class="form-label">Powtórz hasło</label>
+                        <input type="password" class="form-control" placeholder="powtórz hasło..." id="RegisterInputPasswordConfirm" required>
+                        <div class="valid-feedback">
+                          Ok!
+                        </div>
+                        <div class="invalid-feedback">
+                          Hasła muszą się zgadzać
+                        </div>
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO).</label>
+                        <input type="checkbox" class="form-check-input" id="RegisterCheck" required>
+                        <label class="form-check-label" for="RegisterCheck">
+                          Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji
+                          (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie
+                          z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób
+                          fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia
+                          dyrektywy 95/46/WE (RODO).</label>
+                        <div class="invalid-feedback">
+                          To pole jest wymagane
+                        </div>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary mt-2">Zarejestruj się</button>
@@ -98,6 +125,33 @@
             <!-- Copyright -->
           </footer>
 
+
+        <script>
+          (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+              .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                  }
+
+                  form.classList.add('was-validated')
+                }, false)
+              })
+          })()
+
+          function checkPasswordMatch(){
+            var pswd = document.getElementById('RegisterInputPassword')
+            var pswdCheck = document.getElementById('RegisterInputPasswordConfirm')
+            pswdCheck.setCustomValidity(pswdCheck.value != pswd.value ? "Hasła muszą się zgadzać" : '')
+          }
+        </script>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
