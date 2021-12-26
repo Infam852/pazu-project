@@ -22,7 +22,7 @@
         <header class="subhead">
             <nav class="darken-transparent navbar navbar-expand-lg navbar-defaul fixed-top static-top p-0">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-white p-3" href="index.html">Navbar</a>
+                    <a class="navbar-brand text-white p-3" href="index.html">FlatNav</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -33,15 +33,18 @@
                     </form>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item p-3 nav-element">
-                        <a class="nav-link text-white shadow-blur" href="#">Kalkulator kosztów</a>
+                          <a class="nav-link text-white shadow-blur" href="#">Kalkulator kosztów</a>
                         </li>
-                        <li class="nav-item p-3 nav-element">
-                        <a class="nav-link text-white shadow-blur" href="login.html">Zaloguj</a>
+                        <li class="nav-item p-3 nav-element" style="display:none" id="login-opt">
+                          <a class="nav-link text-white shadow-blur" href="login.html">Zaloguj</a>
                         </li>
-                        <li class="nav-item p-3 nav-element">
-                        <a class="nav-link text-white shadow-blur" href="register.html">Zarejestruj</a>
+                        <li class="nav-item p-3 nav-element" style="display:none" id="register-opt">
+                          <a class="nav-link text-white shadow-blur" href="register.html">Zarejestruj</a>
                         </li>
-                    </ul>
+                        <li class="nav-item p-3 nav-element" style="display:none" id="logout-opt">
+                          <a class="nav-link text-white shadow-blur" href="index.html" onclick="logout()">Wyloguj</a>
+                        </li>
+                      </ul>
                     </div>
                 </div>
             </nav>
@@ -66,7 +69,7 @@
                         <a class="link-secondary" href="#">Nie pamiętam hasła</a>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Zaloguj się</button>
+                        <a href="index.html" class="btn btn-primary" onclick="login()" role="button">Zaloguj się</a>
                         <div class="mt-2">
                             <span>Jeśli nie masz konta <a class="link-primary" href="register.html">zarejestruj się</a></span>
                         </div>
@@ -91,17 +94,26 @@
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
               © 2021 Copyright:
-              <a class="text-white" href="https://mdbootstrap.com/">AGH PAZU</a>
+              <a class="text-white" href="https://www.agh.edu.pl/">AGH PAZU</a>
             </div>
             <!-- Copyright -->
           </footer>
 
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+        <script src="js/scripts.js"></script>
+
+        <script>
+          $(document).ready(function() {
+            setNavbar()
+        });
+        </script>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
