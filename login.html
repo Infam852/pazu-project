@@ -51,25 +51,33 @@
         </header>
         <div class="container page-content">
             <div class="content-container border border-dark shadow">
-                  <form>
+                  <form class="needs-validation" novalidate>
                     <div>
                       <h2 class="text-center">Logowanie</h2>
                       <hr/>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email</label>
-                      <input type="email" class="form-control" placeholder="email..." id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <label for="LoginEmailInput" class="form-label">Email</label>
+                      <input type="email" class="form-control" placeholder="email..." id="LoginEmailInput" aria-describedby="emailHelp" required>
                       <div id="emailHelp" class="form-text"></div>
+                      <div class="invalid-feedback">
+                        Podaj poprawny email
+                      </div>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Hasło</label>
-                      <input type="password" class="form-control" placeholder="hasło..." id="exampleInputPassword1">
+                      <label for="LoginPassowordInput" class="form-label">Hasło</label>
+                      <input type="password" class="form-control" placeholder="hasło..." id="LoginPassowordInput" required>
+                      <div class="invalid-feedback">
+                        To pole jest wymagane
+                      </div>
                     </div>
                     <div class="mt-2">
                         <a class="link-secondary" href="#">Nie pamiętam hasła</a>
                     </div>
                     <div class="text-center">
-                        <a href="index.html" class="btn btn-primary" onclick="login()" role="button">Zaloguj się</a>
+                      <!-- href="index.html" onclick="login()" -->
+                        <!-- <a  class="btn btn-primary"  role="button">Zaloguj się</a> -->
+                        <button type="submit" class="btn btn-primary">Zaloguj się</button>
                         <div class="mt-2">
                             <span>Jeśli nie masz konta <a class="link-primary" href="register.html">zarejestruj się</a></span>
                         </div>
@@ -108,8 +116,33 @@
         <script>
           $(document).ready(function() {
             setNavbar()
-        });
+          });
+
+          (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+              .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                  }
+                  else if (form.checkValidity() == true){
+                    event.preventDefault()
+                    console.log("[DEBUG] login submit: validation sucessful")
+                    login()
+                    window.location.replace("index.html");
+                  }
+                  console.log("validate", form)
+                  form.classList.add('was-validated')
+                }, false)
+              })
+          })()
         </script>
+
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
