@@ -15,12 +15,14 @@ function checkPasswordMatch(){
 
 function logout(){
     console.log("[DEBUG] logout(): remove cookie login")
+    sessionStorage.setItem("showLogoutToast", "1");
     Cookies.remove("login")
 }
 
 
 function login(){
     console.log("[DEBUG] login(): set cookie login=true")
+    sessionStorage.setItem("showLoginToast", "1");
     Cookies.set('login', 'true');
 }
 

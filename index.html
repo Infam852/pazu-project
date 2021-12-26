@@ -19,43 +19,55 @@
         <link href="css/main.css" rel="stylesheet" />
     </head>
     <body>
-        <!-- Masthead-->
-        <header class="masthead">
-            <!-- Navigation-->
-            <nav class="darken-transparent navbar navbar-expand-lg navbar-defaul fixed-top static-top p-0">
-                <div class="container-fluid">
-                  <a class="navbar-brand text-white p-3" href="index.html">FlatNav</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex ms-auto py-2 me-lg-3">
-                        <input class="form-control me-2" type="search" placeholder="Szukaj..." aria-label="Search">
-                        <button class="btn btn-outline-info " type="submit">Szukaj</button>
-                    </form>
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                      <li class="nav-item p-3 nav-element">
-                        <a class="nav-link text-white shadow-blur" href="#">Kalkulator kosztów</a>
-                      </li>
-                      <li class="nav-item p-3 nav-element" style="display:none" id="login-opt">
-                        <a class="nav-link text-white shadow-blur" href="login.html">Zaloguj</a>
-                      </li>
-                      <li class="nav-item p-3 nav-element" style="display:none" id="register-opt">
-                        <a class="nav-link text-white shadow-blur" href="register.html">Zarejestruj</a>
-                      </li>
-                      <li class="nav-item p-3 nav-element" style="display:none" id="logout-opt">
-                        <a class="nav-link text-white shadow-blur" href="index.html" onclick="logout()">Wyloguj</a>
-                      </li>
-                    </ul>
-                  </div>
+      <!-- Masthead-->
+      <header class="masthead">
+          <!-- Navigation-->
+          <nav class="darken-transparent navbar navbar-expand-lg navbar-defaul fixed-top static-top p-0">
+              <div class="container-fluid">
+                <a class="navbar-brand text-white p-3" href="index.html">FlatNav</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <form class="d-flex ms-auto py-2 me-lg-3">
+                      <input class="form-control me-2" type="search" placeholder="Szukaj..." aria-label="Search">
+                      <button class="btn btn-outline-info " type="submit">Szukaj</button>
+                  </form>
+                  <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item p-3 nav-element">
+                      <a class="nav-link text-white shadow-blur" href="#">Kalkulator kosztów</a>
+                    </li>
+                    <li class="nav-item p-3 nav-element" style="display:none" id="login-opt">
+                      <a class="nav-link text-white shadow-blur" href="login.html">Zaloguj</a>
+                    </li>
+                    <li class="nav-item p-3 nav-element" style="display:none" id="register-opt">
+                      <a class="nav-link text-white shadow-blur" href="register.html">Zarejestruj</a>
+                    </li>
+                    <li class="nav-item p-3 nav-element" style="display:none" id="logout-opt">
+                      <a class="nav-link text-white shadow-blur" href="index.html" onclick="logout()">Wyloguj</a>
+                    </li>
+                  </ul>
                 </div>
-              </nav>
-              <!-- Header -->
-              <div class="container-fluid text-center mt-5">
-                  <h1 class="text-white shadow-blur main-header">Szukasz mieszkania lub domu?</h1>
-                  <h2 class="text-white shadow-blur secondary-header mt-5">Pomożemy Ci!</h1>
               </div>
-            </header>
+            </nav>
+            <!-- Header -->
+            <div class="container-fluid text-center mt-5">
+                <h1 class="text-white shadow-blur main-header">Szukasz mieszkania lub domu?</h1>
+                <h2 class="text-white shadow-blur secondary-header mt-5">Pomożemy Ci!</h1>
+            </div>
+        </header>
+        <!-- alerts -->
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000" style="position: fixed; bottom: 0; right: 0; margin: 50px 20px; z-index: 10;">
+          <div class="toast-header bg-success text-light">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Powiadomienie</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            <h5 id="toast-msg"></h4>
+          </div>
+        </div>
+        <!-- content -->
         <div class="container">
             <div class="text-center mt-5">
                 <h4 class="display-4">Lorem ipsum</h4>
@@ -169,6 +181,16 @@
             // cookies are strings
             console.log("cookies:", Cookies.get())
             setNavbar()
+            if(sessionStorage.getItem("showLoginToast")=='1'){
+              $('#toast-msg').text('Logowanie przebiegło pomyślnie!')
+              $('.toast').toast('show')
+              sessionStorage.removeItem("showLoginToast");
+            }
+            if(sessionStorage.getItem("showLogoutToast")=='1'){
+              $('#toast-msg').text('Wylogowano!')
+              $('.toast').toast('show')
+              sessionStorage.removeItem("showLogoutToast");
+            }
         });
         </script>
 
