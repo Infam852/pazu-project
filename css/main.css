@@ -188,3 +188,21 @@ hr {
     border: 1px solid black;
     border-radius: 15px;
 }
+
+.row-striped{
+    background-color: #ffffff;
+}
+
+/* .row-striped:nth-of-type(1){
+    background-color: #ffdada;
+} */
+
+.row-striped {
+    padding: 15px 0;
+}
+
+.form-check-input[type=checkbox] {
+    border-radius: .25em;
+    height: 22px;
+    width: 22px;
+}
