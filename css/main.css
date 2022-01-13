@@ -206,3 +206,10 @@ hr {
     height: 22px;
     width: 22px;
 }
+#loading, #results, #loan-form, #form_n_w, #results_n_w, #loading_n_w, #results_n_p, #loading_n_p, #form_n_p, #results_t_w, #loading_t_w, #form_t_w, #results_t_p, #loading_t_p, #form_t_p {
+    display: none;
+}
+
+.radio-button{
+    text-align: right;
+}
