@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Logowanie</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/main.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header class="subhead">
+            <nav class="darken-transparent navbar navbar-expand-lg navbar-defaul fixed-top static-top p-0">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white p-3" href="index.html">FlatNav</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="d-flex ms-auto py-2 me-lg-3">
+                        <input class="form-control me-2" type="search" placeholder="Szukaj..." aria-label="Search">
+                        <button class="btn btn-outline-info " type="submit">Szukaj</button>
+                    </form>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item p-3 nav-element">
+                          <a class="nav-link text-white shadow-blur" href="#">Kalkulator kosztów</a>
+                        </li>
+                        <li class="nav-item p-3 nav-element" style="display:none" id="login-opt">
+                          <a class="nav-link text-white shadow-blur" href="login.html">Zaloguj</a>
+                        </li>
+                        <li class="nav-item p-3 nav-element" style="display:none" id="register-opt">
+                          <a class="nav-link text-white shadow-blur" href="register.html">Zarejestruj</a>
+                        </li>
+                        <li class="nav-item p-3 nav-element" style="display:none" id="logout-opt">
+                          <a class="nav-link text-white shadow-blur" href="index.html" onclick="logout()">Wyloguj</a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container page-content fill-min-h">
+            <div class="content-container border border-dark shadow">
+                <div class="hd">
+                    <h2 class="text-center">Kalkulator kosztów</h2>
+                    <hr/>
+                </div>
+                <div id="question">
+                    <form></form>
+                    <h5 class="text-center">Zakup na kredyt:
+                        <input type="radio" id="kredyt_tak" name="kredyt" value="Tak" required>
+                        <label for="kredyt_tak">Tak</label>&emsp;&emsp;&ensp;&ensp;
+                        <input type="radio" id="kredyt_nie" name="kredyt" value="Nie">
+                        <label for="kredyt_nie">Nie</label>
+                    </h5>
+                    <h5 class="text-center">Rynek:&emsp;&emsp;&emsp;
+                        <input type="radio" id="rynek_p" name="rynek" value="Pierwotny" required>
+                        <label for="rynek_p">Pierwotny</label>
+                        <input type="radio" id="rynek_w" name="rynek" value="Wtorny">
+                        <label for="rynek_w">Wtórny</label></h5>
+                    <hr/>
+                    <div class="text-center">
+                        <input type="submit" id="confirm" name="" value="Zatwierdź" class="btn btn-primary" onclick="save_answear()">
+                    </div>
+                    </form>
+                </div>
+                
+                <form id="form_t_p">
+                    <div class="form-group">
+                      <div class="mb-3">
+                        <label class="form-label">Wartość nieruchomości</label>
+                        <input type="number" id="wartosc_nieruchomosci_t_p" placeholder="" class="form-control" name="" value="350000">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="mb-3">
+                          <label class="form-label">Wielkość nieruchomości [m2]</label>
+                          <input type="number" id="wielkosc_nieruchomosci_t_p" placeholder="" class="form-control" name="" value="35">
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <div class="mb-3">
+                          <label class="form-label">Opłaty sądowe</label>
+                        <input type="number" id="sad_t_p" placeholder="" class="form-control" name="" value="400">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Podatek od ustanowienia hipoteki</label>
+                          <input type="number" id="podatekH_t_p" placeholder="" class="form-control" name="" value="250">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Założenie księgi wieczystej</label>
+                          <input type="number" id="ksiega_t_p" placeholder="" class="form-control" name="" value="100">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Wkład własny</label>
+                          <input type="number" id="wklad_t_p" placeholder="" class="form-control" name="" value="100000">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Okres spłaty w latach</label>
+                          <input type="number" id="okres_t_p" placeholder="" class="form-control" name="" value="25">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Oprocentowanie kredytu</label>
+                          <input type="number" id="oprocentowanie_t_p" placeholder="" class="form-control" name="" value="5">
+                        </div>
+                      </div>
+                    <div class="text-center form-group">
+                      <input type="submit" name="" value="Oblicz" class="btn btn-primary">
+                  </div>
+                  </form>
+                  <!-- Loader  -->
+                  <div class="text-center" id="loading_t_p">
+                    <hr/>
+                    <img src="assets/img/loading-buffering.gif" alt="Loading Gif" style="height: 100px;" class="img-fluid">
+                  </div>
+                  <!-- Result  -->
+                  <div id="results_t_p" class="pt-4">
+                    <h5>Podsumowanie:</h5>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Wkład własny</span>
+                          </div>
+                          <input type="number" id="wkladr_t_p" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Opłaty sądowe</span>
+                        </div>
+                        <input type="number" id="kosztysad_t_p" class="form-control" name="" value="" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Podatek od ustanowienia hipoteki</span>
+                          </div>
+                          <input type="number" id="podatekHR_t_p" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Założenie księgi wieczystej</span>
+                          </div>
+                          <input type="number" id="ksiegaR_t_p" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Taksa notarialna</span>
+                          </div>
+                          <input type="number" id="taksa_t_p" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Szacunkowe koszty wykończenia</span>
+                          </div>
+                          <input type="number" id="wykonczenie_t_p" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Rata miesięczna</span>
+                          </div>
+                          <input type="number" id="rata_t_p" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Odsetki</span>
+                          </div>
+                          <input type="number" id="odsetki_t_p" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Całkowity koszt kredytu</span>
+                          </div>
+                          <input type="number" id="kredytkoszt_t_p" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Minimalna wymagana kwota</span>
+                        </div>
+                        <input type="number" id="summ_t_p" class="form-control" name="" value="" disabled>
+                      </div>
+                    </div>
+                  </div>
+
+                <form id="form_t_w">
+                    <div class="form-group">
+                      <div class="mb-3">
+                        <label class="form-label">Wartość nieruchomości</label>
+                        <input type="number" id="wartosc_nieruchomosci_t_w" placeholder="" class="form-control" name="" value="350000">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="mb-3">
+                          <label class="form-label">Wielkość nieruchomości [m2]</label>
+                          <input type="number" id="wielkosc_nieruchomosci_t_w" placeholder="" class="form-control" name="" value="35">
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <div class="mb-3">
+                          <label class="form-label">Opłaty sądowe</label>
+                        <input type="number" id="sad_t_w" placeholder="" class="form-control" name="" value="400">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Podatek od ustanowienia hipoteki</label>
+                          <input type="number" id="podatekH_t_w" placeholder="" class="form-control" name="" value="250">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Prowizja dla agencji</label>
+                          <input type="number" id="prowizja_t_w" placeholder="" class="form-control" name="" value="2">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Wkład własny</label>
+                          <input type="number" id="wklad_t_w" placeholder="" class="form-control" name="" value="100000">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Okres spłaty w latach</label>
+                          <input type="number" id="okres_t_w" placeholder="" class="form-control" name="" value="25">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                            <label class="form-label">Oprocentowanie kredytu</label>
+                          <input type="number" id="oprocentowanie_t_w" placeholder="" class="form-control" name="" value="5">
+                        </div>
+                      </div>
+                    <div class="text-center form-group">
+                      <input type="submit" name="" value="Oblicz" class="btn btn-primary">
+                  </div>
+                  </form>
+                  <!-- Loader  -->
+                  <div class="text-center" id="loading_t_w">
+                    <hr/>
+                    <img src="assets/img/loading-buffering.gif"  alt="Loading Gif" style="height: 100px;" class="img-fluid">
+                  </div>
+                  <!-- Result  -->
+                  <div id="results_t_w" class="pt-4">
+                    <h5>Podsumowanie:</h5>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Wkład własny</span>
+                          </div>
+                          <input type="number" id="wkladr_t_w" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Opłaty sądowe</span>
+                        </div>
+                        <input type="number" id="kosztysad_t_w" class="form-control" name="" value="" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Podatek od ustanowienia hipoteki</span>
+                          </div>
+                          <input type="number" id="podatekHR_t_w" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Prowizja dla agencji</span>
+                          </div>
+                          <input type="number" id="prowizjaR_t_w" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Podatek</span>
+                        </div>
+                        <input type="number" id="podatek_t_w" class="form-control" name="" value="" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Taksa notarialna</span>
+                          </div>
+                          <input type="number" id="taksa_t_w" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Szacunkowe koszty wykończenia</span>
+                          </div>
+                          <input type="number" id="wykonczenie_t_w" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Rata miesięczna</span>
+                          </div>
+                          <input type="number" id="rata_t_w" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Odsetki</span>
+                          </div>
+                          <input type="number" id="odsetki_t_w" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Całkowity koszt kredytu</span>
+                          </div>
+                          <input type="number" id="kredytkoszt_t_w" class="form-control" name="" value="" disabled>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Minimalna wymagana kwota</span>
+                        </div>
+                        <input type="number" id="summ_t_w" class="form-control" name="" value="" disabled>
+                      </div>
+                    </div>
+                  </div>
+
+            <form id="form_n_w">
+                <div class="form-group">
+                  <div class="mb-3">
+                    <label class="form-label">Wartość nieruchomości</label>
+                    <input type="number" id="wartosc_nieruchomosci_n_w" placeholder="" class="form-control" name="" value="350000">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <div class="mb-3">
+                      <label class="form-label">Wielkość nieruchomości [m2]</label>
+                      <input type="number" id="wielkosc_nieruchomosci_n_w" placeholder="" class="form-control" name="" value="35">
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <div class="mb-3">
+                    <label class="form-label">Koszty wypisów z aktu notarialnego</label>
+                    <input type="number" id="notary_n_w" placeholder="" class="form-control" name="" value="350">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3">
+                      <label class="form-label">Opłaty sądowe</label>
+                    <input type="number" id="sad_n_w" placeholder="" class="form-control" name="" value="200">
+                  </div>
+                </div>
+                <div class="text-center form-group">
+                  <input type="submit" name="" value="Oblicz" class="btn btn-primary">
+              </div>
+              </form>
+              <!-- Loader  -->
+              <div class="text-center" id="loading_n_w">
+                <hr/>
+                    <img src="assets/img/loading-buffering.gif"  alt="Loading Gif" style="height: 100px;" class="img-fluid">
+              </div>
+              <!-- Result  -->
+              <div id="results_n_w" class="pt-4">
+                <h5>Podsumowanie:</h5>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Zakup nieruchomości</span>
+                      </div>
+                      <input type="number" id="nieruchomosc_n_w" class="form-control" name="" value="" disabled>
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Koszty wypisów z aktu notarialnego</span>
+                    </div>
+                    <input type="number" id="notarycosts_n_w" class="form-control" name="" value="" disabled>
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Opłaty sądowe</span>
+                    </div>
+                    <input type="number" id="kosztysad_n_w" class="form-control" name="" value="" disabled>
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Podatek</span>
+                    </div>
+                    <input type="number" id="podatek_n_w" class="form-control" name="" value="" disabled>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Taksa notarialna</span>
+                      </div>
+                      <input type="number" id="taksa_n_w" class="form-control" name="" value="" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Szacunkowe koszty wykończenia</span>
+                      </div>
+                      <input type="number" id="wykonczenie_n_w" class="form-control" name="" value="" disabled>
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Minimalna wymagana kwota</span>
+                    </div>
+                    <input type="number" id="summ_n_w" class="form-control" name="" value="" disabled>
+                  </div>
+                </div>
+              </div>
+
+              <form id="form_n_p">
+                <div class="form-group">
+                  <div class="mb-3">
+                    <label class="form-label">Wartość nieruchomości</label>
+                    <input type="number" id="wartosc_nieruchomosci_n_p" placeholder="" class="form-control" name="" value="350000">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <div class="mb-3">
+                      <label class="form-label">Wielkość nieruchomości [m2]</label>
+                      <input type="number" id="wielkosc_nieruchomosci_n_p" placeholder="" class="form-control" name="" value="35">
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <div class="mb-3">
+                    <label class="form-label">Założenie księgi wieczystej</label>
+                    <input type="number" id="ksiega_n_p" placeholder="" class="form-control" name="" value="100">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3">
+                      <label class="form-label">Opłaty sądowe</label>
+                    <input type="number" id="sad_n_p" placeholder="" class="form-control" name="" value="200">
+                  </div>
+                </div>
+                <div class="text-center form-group">
+                  <input type="submit" name="" value="Oblicz" class="btn btn-primary">
+              </div>
+              </form>
+              <!-- Loader  -->
+              <div class="text-center" id="loading_n_p">
+                <hr/>
+                    <img src="assets/img/loading-buffering.gif"  alt="Loading Gif" style="height: 100px;" class="img-fluid">
+              </div>
+              <!-- Result  -->
+              <div id="results_n_p" class="pt-4">
+                <h5>Podsumowanie:</h5>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Zakup nieruchomości</span>
+                      </div>
+                      <input type="number" id="nieruchomosc_n_p" class="form-control" name="" value="" disabled>
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Założenie księgi wieczystej</span>
+                    </div>
+                    <input type="number" id="ksiegar_n_p" class="form-control" name="" value="" disabled>
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Opłaty sądowe</span>
+                    </div>
+                    <input type="number" id="kosztysad_n_p" class="form-control" name="" value="" disabled>
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Taksa notarialna</span>
+                      </div>
+                      <input type="number" id="taksa_n_p" class="form-control" name="" value="" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Szacunkowe koszty wykończenia</span>
+                      </div>
+                      <input type="number" id="wykonczenie_n_p" class="form-control" name="" value="" disabled>
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Minimalna wymagana kwota</span>
+                    </div>
+                    <input type="number" id="summ_n_p" class="form-control" name="" value="" disabled>
+                  </div>
+                </div>
+              </div>
+              
+
+    </div>
+
+            
+               
+                
+          </div> -->
+        </div>
+
+        <!-- footer -->
+        <footer class="bg-dark text-center text-white">
+            <div class="container p-4 pb-0">
+              <section class="mb-4">
+                <button class="btn btn-default">
+                    <img src="assets/img/fb_icon.png" width="28" />
+                </button>
+                <button class="btn btn-default">
+                    <img src="assets/img/twitter_icon.png" width="28" />
+                </button>
+              </section>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2021 Copyright:
+              <a class="text-white" href="https://www.agh.edu.pl/">AGH PAZU</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+        <script src="js/scripts.js"></script>
+
+        <script>
+          $(document).ready(function() {
+            setNavbar()
+          });
+
+          (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+              .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                  }
+                  else if (form.checkValidity() == true){
+                    event.preventDefault()
+                    console.log("[DEBUG] login submit: validation sucessful")
+                    login()
+                    window.location.replace("index.html");
+                  }
+                  console.log("validate", form)
+                  form.classList.add('was-validated')
+                }, false)
+              })
+          })()
+        </script>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
