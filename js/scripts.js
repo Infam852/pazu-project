@@ -19,6 +19,11 @@ function logout(){
     Cookies.remove("login")
 }
 
+function remove_account(){
+    sessionStorage.setItem("showLogoutToast", "0");
+    Cookies.remove("login")
+}
+
 
 function login(){
     console.log("[DEBUG] login(): set cookie login=true")
@@ -32,9 +37,11 @@ function setNavbar(){
         $("#login-opt").hide();
         $("#register-opt").hide();
         $("#logout-opt").show();
+        $("#account-opt").show();
     } else {
         $("#login-opt").show();
         $("#register-opt").show();
         $("#logout-opt").hide();
+        $("#account-opt").hide();
     }
 }

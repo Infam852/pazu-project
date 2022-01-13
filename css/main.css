@@ -172,3 +172,19 @@ hr {
     border: 1px solid black;
     border-radius: 5px;
 }
+
+.profile_left_column {
+    width: 30%;
+    float:left;
+}
+
+.profile_right_column {
+    width: 70%;
+    float:right;
+    margin-top: 7.5px;
+}
+
+.current_task {
+    border: 1px solid black;
+    border-radius: 15px;
+}
